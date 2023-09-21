@@ -1,0 +1,1 @@
+commit 1: the file structure has been set up and I also implemented the react router functionality in the app now the next task is to implement the header of the app
