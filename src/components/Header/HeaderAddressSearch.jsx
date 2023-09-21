@@ -1,10 +1,12 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import AppContext from "../../utils/AppContext";
 import { debounce } from "lodash";
 import addressSuggestionFetch from "../../utils/addressSuggestionFetch";
+import locationPin from "../../assets/location-pin.svg";
 
 import fetchingCoordinates from "../../utils/addressDataFetch";
 function HeaderAddressSearch() {
+  const inputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState();
   const [showSuggestion, setShowSuggestion] = useState(true);
@@ -18,10 +20,24 @@ function HeaderAddressSearch() {
       setSuggestions(addressSuggestions);
     };
     fetchAddressSuggestion();
-  }, 10);
+  }, 300);
   useEffect(() => {
     setAddressData({ ...addressData, coordinates });
   }, [coordinates]);
+
+  useEffect(() => {
+    const handleClickOutSide = (event) => {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setShowSuggestion(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutSide);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutSide);
+    };
+  }, []);
 
   const handleLocationClick = (placeId) => {
     const fetchAddressCoordinates = async () => {
@@ -34,16 +50,23 @@ function HeaderAddressSearch() {
 
   return (
     <div className="flex flex-col relative">
-      <input
-        className="w-96 p-3 outline-none shadow-md rounded-lg"
-        type="text"
-        value={searchQuery}
-        onChange={(e) => {
-          setSearchQuery(e.target.value);
-          setShowSuggestion(true);
-          debounceHandleInputChange(e.target.value);
-        }}
-        placeholder="Search Your Location ..."></input>
+      <label className="relative block ">
+        <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+          <img className="w-5 h-5" src={locationPin} alt="location"></img>
+        </span>
+        <input
+          ref={inputRef}
+          className="w-96 p-3 outline-none shadow-md rounded-lg py-2 pl-9 pr-3"
+          type="text"
+          value={searchQuery}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            setShowSuggestion(true);
+            debounceHandleInputChange(e.target.value);
+          }}
+          placeholder="Search Your Location ..."></input>
+      </label>
+
       <ul className="absolute top-full left-0 bg-slate-50 rounded-lg">
         {!suggestions
           ? null

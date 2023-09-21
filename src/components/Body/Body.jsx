@@ -1,7 +1,18 @@
+import { BodyCarousel } from "./index";
+import AppContext from "../../utils/AppContext";
+import { useContext } from "react";
 function Body() {
+  const { addressData } = useContext(AppContext);
   return (
     <div>
-      <h1>THis is body components</h1>
+      {!addressData || !addressData.coordinates ? (
+        <BodyCarousel />
+      ) : (
+        <BodyCarousel
+          lat={addressData.coordinates.lat}
+          lng={addressData.coordinates.lng}
+        />
+      )}
     </div>
   );
 }
