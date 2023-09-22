@@ -7,13 +7,31 @@ async function fetchBodyCarousel(lat, lng) {
   const arrayOfRestaurantAndCarousel = dataJSON.data.cards.filter(
     (card) => card.card.card?.gridElements?.infoWithStyle?.["@type"]
   );
-  const arrayOfCarousel = arrayOfRestaurantAndCarousel.filter(
+  // ?getting topRestaurants too
+  const arrayOfRestaurant = arrayOfRestaurantAndCarousel.filter(
+    (card) =>
+      card.card.card.gridElements?.infoWithStyle?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.FavouriteRestaurantInfoWithStyle" &&
+      // card.card.card.gridElements?.infoWithStyle?.collectionId === "84124"
+      card.card.card.gridElements?.infoWithStyle?.restaurants.length > 8
+  );
+  let arrayOfCarousel = arrayOfRestaurantAndCarousel.filter(
     (card) =>
       card.card.card.gridElements?.infoWithStyle?.["@type"] ===
         "type.googleapis.com/swiggy.gandalf.widgets.v2.ImageInfoLayoutCard" &&
       card.card.card.gridElements?.infoWithStyle?.info.length > 10
   );
-  return arrayOfCarousel;
+
+  arrayOfCarousel =
+    arrayOfCarousel[0]?.card?.card?.gridElements?.infoWithStyle?.info;
+
+  arrayOfCarousel = !arrayOfCarousel
+    ? []
+    : arrayOfCarousel.filter((onlyValidEntityIdElement) =>
+        onlyValidEntityIdElement.entityId.includes("swiggy://collectionV2")
+      );
+
+  return { arrayOfCarousel, arrayOfRestaurant };
 }
 
 export default fetchBodyCarousel;

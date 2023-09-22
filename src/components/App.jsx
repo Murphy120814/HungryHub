@@ -1,4 +1,14 @@
-import { Header, Body, Footer, Error, Search, LogIn, Cart } from "./index";
+import {
+  Header,
+  Body,
+  Footer,
+  Error,
+  Search,
+  LogIn,
+  Cart,
+  RestaurantMenu,
+  BodyCarouselRestaurants,
+} from "./index";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { useState } from "react";
 import AppContext from "../utils/AppContext";
@@ -37,6 +47,14 @@ export const appRouter = createBrowserRouter([
       {
         path: "/logIn",
         element: <LogIn />,
+      },
+      {
+        path: "/restaurants/:resId",
+        element: <RestaurantMenu />,
+      },
+      {
+        path: "/carouselRestaurant/:entityID",
+        element: <BodyCarouselRestaurants />,
       },
     ],
     errorElement: <Error />,

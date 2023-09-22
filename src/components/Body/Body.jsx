@@ -1,4 +1,4 @@
-import { BodyCarousel } from "./index";
+import { BodyCarousel, TopRestaurant } from "./index";
 import AppContext from "../../utils/AppContext";
 import { useContext } from "react";
 function Body() {
@@ -6,12 +6,21 @@ function Body() {
   return (
     <div>
       {!addressData || !addressData.coordinates ? (
-        <BodyCarousel />
+        <>
+          <BodyCarousel />
+          <TopRestaurant />
+        </>
       ) : (
-        <BodyCarousel
-          lat={addressData.coordinates.lat}
-          lng={addressData.coordinates.lng}
-        />
+        <>
+          <BodyCarousel
+            lat={addressData.coordinates.lat}
+            lng={addressData.coordinates.lng}
+          />
+          <TopRestaurant
+            lat={addressData.coordinates.lat}
+            lng={addressData.coordinates.lng}
+          />
+        </>
       )}
     </div>
   );
