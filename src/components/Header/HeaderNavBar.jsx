@@ -5,7 +5,7 @@ function HeaderNavBar() {
   return (
     <div>
       <ul className="flex justify-between items-center">
-        <li className="mx-6 text-xl hover:font-bold hover:text-orange-600 transition-all ease-in-out flex">
+        <li className="mx-6 text-xl hover:font-bold hover:text-orange-600 transition-all ease-in-out flex ">
           <img className="w-6 mr-2" src={searchLogo} alt="search Logo"></img>
           <Link to="/search">Search</Link>
         </li>

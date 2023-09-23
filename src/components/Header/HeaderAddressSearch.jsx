@@ -67,7 +67,7 @@ function HeaderAddressSearch() {
           placeholder="Search Your Location ..."></input>
       </label>
 
-      <ul className="absolute top-full left-0 bg-slate-50 rounded-lg">
+      <ul className="absolute top-full left-0 bg-slate-50 rounded-lg z-50">
         {!suggestions
           ? null
           : showSuggestion &&

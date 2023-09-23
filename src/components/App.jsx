@@ -8,6 +8,8 @@ import {
   Cart,
   RestaurantMenu,
   BodyCarouselRestaurants,
+  SuggestedRestaurant,
+  SuggestedDishes,
 } from "./index";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { useState } from "react";
@@ -55,6 +57,14 @@ export const appRouter = createBrowserRouter([
       {
         path: "/carouselRestaurant/:entityID",
         element: <BodyCarouselRestaurants />,
+      },
+      {
+        path: "/suggestedRestaurant/:suggestedResId",
+        element: <SuggestedRestaurant />,
+      },
+      {
+        path: "/suggestedDishes/:suggestedDishId",
+        element: <SuggestedDishes />,
       },
     ],
     errorElement: <Error />,

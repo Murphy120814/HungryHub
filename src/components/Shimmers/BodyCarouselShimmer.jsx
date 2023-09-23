@@ -1,5 +1,5 @@
 function BodyCarouselShimmer() {
-  const divArray = new Array(6).fill("").map((_, index) => {
+  const divArray = new Array(10).fill("").map((_, index) => {
     return (
       <div
         key={index}
