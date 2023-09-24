@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import AppContext from "../../utils/AppContext";
 import fetchSuggestedDishesAndRestaurantsData from "../../utils/fetchSuggestedDishesRestaurants";
 import RestaurantCard from "../Body/BodyTopRestaurant/RestaurantCard";
+import TopRestaurantShimmer from "../Shimmers/TopRestaurantShimmer";
+import SuggestedRestaurantShimmer from "../Shimmers/SuggestedRestaurantShimmer";
 
 function SuggestedRestaurant() {
   const { suggestedResId } = useParams();
@@ -24,6 +26,7 @@ function SuggestedRestaurant() {
           lng,
           metaData
         );
+      console.log(suggestedRestaurantData);
       setRestaurantData(suggestedRestaurantData.data.cards);
     };
 
@@ -40,7 +43,7 @@ function SuggestedRestaurant() {
   }, []);
 
   if (!restaurantData) {
-    return null;
+    return <SuggestedRestaurantShimmer />;
   }
 
   //? local Destructuring logic of the cards
@@ -70,14 +73,18 @@ function SuggestedRestaurant() {
       </div>
       <h1 className="font-bold text-3xl mb-8">More results like this:</h1>
       <div className="flex flex-wrap gap-12 items-center">
-        {similarRestaurant.map((restaurant) => (
-          <Link
-            className="max-w-none"
-            to={"/restaurants/" + restaurant.info?.id}
-            key={restaurant.info?.id}>
-            <RestaurantCard restaurantData={restaurant.info} />
-          </Link>
-        ))}
+        {!similarRestaurant ? (
+          <TopRestaurantShimmer />
+        ) : (
+          similarRestaurant.map((restaurant) => (
+            <Link
+              className="max-w-none"
+              to={"/restaurants/" + restaurant.info?.id}
+              key={restaurant.info?.id}>
+              <RestaurantCard restaurantData={restaurant.info} />
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

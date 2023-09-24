@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import AppContext from "../../utils/AppContext";
 import fetchSearchSuggestions from "../../utils/fetchSearchSuggestions";
 import SearchSuggestionItems from "./SearchSuggestionItems";
+import SuggestedSearchShimmer from "../Shimmers/SuggestedSearchShimmer";
 
 import { Link } from "react-router-dom";
 
@@ -41,32 +42,38 @@ function Search() {
           placeholder="Search restaurants or dishes..."></input>
       </label>
       <div className="w-full">
-        {!searchSuggestionData
-          ? null
-          : searchText === ""
-          ? null
-          : searchSuggestionData
-              .filter(
-                (dataObj) =>
-                  dataObj.type === "DISH" || dataObj.type === "RESTAURANT"
-              )
-              .map((dataObj, index) => (
-                <Link
-                  key={index}
-                  to={
-                    dataObj.type === "RESTAURANT"
-                      ? "/suggestedRestaurant/" +
-                        dataObj.cta.link.split("query=")[1]
-                      : "/suggestedDishes/" +
-                        dataObj.cta.link.split("query=")[1]
-                  }>
-                  <SearchSuggestionItems
-                    title={dataObj.text}
-                    type={dataObj.tagToDisplay}
-                    cloudinaryId={dataObj.cloudinaryId}
-                  />
-                </Link>
-              ))}
+        {!searchSuggestionData ? (
+          <SuggestedSearchShimmer />
+        ) : searchText === "" ? (
+          <SuggestedSearchShimmer />
+        ) : (
+          searchSuggestionData
+            .filter(
+              (dataObj) =>
+                dataObj.type === "DISH" || dataObj.type === "RESTAURANT"
+            )
+            .map((dataObj, index) => (
+              <Link
+                key={index}
+                to={
+                  dataObj.type === "RESTAURANT"
+                    ? "/suggestedRestaurant/" +
+                      encodeURIComponent(dataObj.text) +
+                      "&" +
+                      encodeURIComponent(dataObj.metadata)
+                    : "/suggestedDishes/" +
+                      encodeURIComponent(dataObj.text) +
+                      "&" +
+                      encodeURIComponent(dataObj.metadata)
+                }>
+                <SearchSuggestionItems
+                  title={dataObj.text}
+                  type={dataObj.tagToDisplay}
+                  cloudinaryId={dataObj.cloudinaryId}
+                />
+              </Link>
+            ))
+        )}
       </div>
     </div>
   );

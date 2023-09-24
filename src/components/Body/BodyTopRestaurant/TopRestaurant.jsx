@@ -26,7 +26,7 @@ function TopRestaurant({ lat, lng }) {
       <h1 className="font-bold text-2xl mb-10 mt-12">
         Top Restaurants Near You
       </h1>
-      <div className="flex flex-wrap justify-between items-center">
+      <div className="flex flex-wrap gap-12 items-center">
         {listOfRestaurant.length === 0 ? (
           <TopRestaurantShimmer />
         ) : (

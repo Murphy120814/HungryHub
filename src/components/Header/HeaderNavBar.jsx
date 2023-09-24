@@ -16,10 +16,6 @@ function HeaderNavBar() {
           <img className="w-6 mr-2" src={cartLogo} alt="cart Logo"></img>
           <Link to="/cart">Cart</Link>
         </li>
-
-        <li className="mx-6 text-xl hover:font-bold hover:text-orange-600 transition-all ease-in-out">
-          <Link to="/login">Login</Link>
-        </li>
       </ul>
     </div>
   );

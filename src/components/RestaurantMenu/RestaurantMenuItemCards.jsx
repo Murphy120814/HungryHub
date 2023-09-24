@@ -14,7 +14,7 @@ function RestaurantMenuItemCards({
   const [showIndividualList, setShowIndividualList] = useState(false);
   const handleClick = () => {
     setShowIndex(index);
-    setShowIndividualList((prevState) => !prevState );
+    setShowIndividualList((prevState) => !prevState);
   };
   // console.log(title);
   // console.log("this are the itemCards", itemCards);
