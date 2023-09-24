@@ -11,6 +11,8 @@ import {
   SuggestedRestaurant,
   SuggestedDishes,
 } from "./index";
+import appStore from "../store/appStore";
+import { Provider } from "react-redux";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { useState } from "react";
 import AppContext from "../utils/AppContext";
@@ -20,11 +22,13 @@ function App() {
 
   return (
     <div className="w-9/12 mx-auto">
-      <AppContext.Provider value={{ addressData, setAddressData }}>
-        <Header />
-        <Outlet />
-      </AppContext.Provider>
-      <Footer />
+      <Provider store={appStore}>
+        <AppContext.Provider value={{ addressData, setAddressData }}>
+          <Header />
+          <Outlet />
+        </AppContext.Provider>
+        <Footer />
+      </Provider>
     </div>
   );
 }

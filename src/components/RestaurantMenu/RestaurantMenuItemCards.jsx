@@ -4,6 +4,8 @@ import downArrow from "../../assets/down-arrow-svgrepo-com.svg";
 import vegLogo from "../../assets/veg.png";
 import nonVegLogo from "../../assets/nonveg.png";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../slices/cartSlice";
 function RestaurantMenuItemCards({
   title,
   itemCards,
@@ -11,10 +13,15 @@ function RestaurantMenuItemCards({
   index,
   setShowIndex,
 }) {
+  const dispatch = useDispatch();
   const [showIndividualList, setShowIndividualList] = useState(false);
   const handleClick = () => {
     setShowIndex(index);
     setShowIndividualList((prevState) => !prevState);
+  };
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
   };
   // console.log(title);
   // console.log("this are the itemCards", itemCards);
@@ -51,12 +58,14 @@ function RestaurantMenuItemCards({
                 </h2>
                 <h4 className="text-lg">{itemCard.card.info.description}</h4>
               </div>
-              <div className="w-3/12 ">
-                {/* <div className="absolute bottom-0 right-[45]">
-                  <button className="p-2 bg-white shadow-lg text-black rounded-lg">
-                    Add +
+              <div className="w-3/12 relative">
+                <div className="absolute bottom-0">
+                  <button
+                    className="p-2 bg-slate-900 shadow-lg text-white font-semibold text-lg rounded-lg hover:bg-white hover:text-black "
+                    onClick={() => handleAddItem(itemCard)}>
+                    Add
                   </button>
-                </div> */}
+                </div>
                 <img
                   className="max-w-none w-[150px] h-[160px] mx-auto rounded-md"
                   src={
