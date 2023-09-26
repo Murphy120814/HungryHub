@@ -1,11 +1,9 @@
-import altFoodImg from "../../assets/altFoodImg.png";
 import upArrow from "../../assets/up-arrow-svgrepo-com.svg";
 import downArrow from "../../assets/down-arrow-svgrepo-com.svg";
-import vegLogo from "../../assets/veg.png";
-import nonVegLogo from "../../assets/nonveg.png";
+
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../slices/cartSlice";
+import RestaurantMenuItemCard from "./RestaurantMenuItemCard";
+
 function RestaurantMenuItemCards({
   title,
   itemCards,
@@ -13,16 +11,12 @@ function RestaurantMenuItemCards({
   index,
   setShowIndex,
 }) {
-  const dispatch = useDispatch();
   const [showIndividualList, setShowIndividualList] = useState(false);
   const handleClick = () => {
     setShowIndex(index);
     setShowIndividualList((prevState) => !prevState);
   };
 
-  const handleAddItem = (item) => {
-    dispatch(addItem(item));
-  };
   // console.log(title);
   // console.log("this are the itemCards", itemCards);
   //itemCard.card.info
@@ -41,42 +35,10 @@ function RestaurantMenuItemCards({
       {!showIndividualList || !showItem ? null : (
         <div className="">
           {itemCards.map((itemCard) => (
-            <div
-              className="flex justify-between items-center py-4 divide-x-2"
-              key={itemCard.card.info.id}>
-              <div className="w-9/12 p-8">
-                <img
-                  className="h-[20px] w-[20px] mr-1 mb-4"
-                  src={
-                    itemCard.card.info.isVeg === 1 ? vegLogo : nonVegLogo
-                  }></img>
-                <h1 className="font-bold text-lg">{itemCard.card.info.name}</h1>
-                <h2 className="font-semibold text-lg">
-                  {!itemCard.card.info.price
-                    ? "₹ 200"
-                    : `₹ ${Math.ceil(itemCard.card.info.price / 100)}`}
-                </h2>
-                <h4 className="text-lg">{itemCard.card.info.description}</h4>
-              </div>
-              <div className="w-3/12 relative">
-                <div className="absolute bottom-0">
-                  <button
-                    className="p-2 bg-slate-900 shadow-lg text-white font-semibold text-lg rounded-lg hover:bg-white hover:text-black "
-                    onClick={() => handleAddItem(itemCard)}>
-                    Add
-                  </button>
-                </div>
-                <img
-                  className="max-w-none w-[150px] h-[160px] mx-auto rounded-md"
-                  src={
-                    !itemCard.card.info.imageId
-                      ? altFoodImg
-                      : "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/" +
-                        itemCard.card.info.imageId
-                  }
-                  alt={itemCard.card.info.name}></img>
-              </div>
-            </div>
+            <RestaurantMenuItemCard
+              key={itemCard.card.info.id}
+                itemCard={itemCard}
+            />
           ))}
         </div>
       )}

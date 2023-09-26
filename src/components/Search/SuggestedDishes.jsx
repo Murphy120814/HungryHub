@@ -59,12 +59,14 @@ function SuggestedDishes() {
 
   return (
     <>
-      <h1 className="font-bold text-3xl mb-8">Exciting Dishes for you:</h1>
+      <h1 className="font-bold text-3xl mb-8">
+        Dish which satisfy your cravings:
+      </h1>
       <div className="w-full flex flex-wrap items-center gap-12">
         {arrayOfDishes.map((cardObj) => (
           <RestaurantAndDishComboItemCard
             key={cardObj.card.card.info.id}
-            dishInfo={cardObj.card.card.info}
+            dishInfo={cardObj.card}
             restaurantInfo={cardObj.card.card.restaurant.info}
           />
         ))}

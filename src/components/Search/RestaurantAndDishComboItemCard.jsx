@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import rating from "../../assets/rating.svg";
 import rightArrow from "../../assets/right-arrow-svgrepo-com.svg";
-import vegLogo from "../../assets/veg.png";
-import nonVegLogo from "../../assets/nonveg.png";
-import altFoodImg from "../../assets/altFoodImg.png";
-
+// import vegLogo from "../../assets/veg.png";
+// import nonVegLogo from "../../assets/nonveg.png";
+// import altFoodImg from "../../assets/altFoodImg.png";
+import RestaurantMenuItemCard from "../RestaurantMenu/RestaurantMenuItemCard";
 function RestaurantAndDishComboItemCard({ restaurantInfo, dishInfo }) {
   return (
     <div className="w-5/12 shadow-lg rounded-lg">
@@ -43,7 +43,8 @@ function RestaurantAndDishComboItemCard({ restaurantInfo, dishInfo }) {
           </div>
         </div>
       </Link>
-      <div className="w-full flex divide-y-2 mt-4">
+      <RestaurantMenuItemCard itemCard={dishInfo} />
+      {/* <div className="w-full flex divide-y-2 mt-4">
         <div className="w-9/12 p-2">
           <img
             className="h-[20px] w-[20px] mr-1 mb-1"
@@ -64,7 +65,7 @@ function RestaurantAndDishComboItemCard({ restaurantInfo, dishInfo }) {
             }
             alt={dishInfo.name}></img>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
