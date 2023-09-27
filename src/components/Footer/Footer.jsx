@@ -10,8 +10,8 @@ function Footer() {
         sourced from the, <span className="font-bold">Swiggy public API</span>.
         This project, <span className="font-bold">Hungry Hub</span> is created
         solely for portfolio and educational purposes and to practice and show
-        the skills in the React UI Framework, and it is not intended for any
-        commercial or financial gain.{" "}
+        the skills in the React UI Framework to the potential employer, and it
+        is not intended for any commercial or financial gain.{" "}
         <span className="font-bold">
           All rights, trademarks, and ownership of the data used in this project
           belong to Swiggy.

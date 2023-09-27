@@ -3,13 +3,16 @@ import vegLogo from "../../assets/veg.png";
 import nonVegLogo from "../../assets/nonveg.png";
 import altFoodImg from "../../assets/altFoodImg.png";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../slices/cartSlice";
+import { addItem, removeItem } from "../../slices/cartSlice";
 
 function RestaurantMenuItemCard({ itemCard }) {
   itemCard;
   const dispatch = useDispatch();
   const handleAddItem = (item) => {
     dispatch(addItem(item));
+  };
+  const handleRemoveItem = (item) => {
+    dispatch(removeItem(item));
   };
   const [isAdded, setIsAdded] = useState(false);
   const [showFullText, setShowFullText] = useState(false);
@@ -58,7 +61,7 @@ function RestaurantMenuItemCard({ itemCard }) {
               className="p-2 bg-slate-900 shadow-lg text-white font-semibold text-lg rounded-lg hover:bg-white hover:text-black "
               onClick={() => {
                 setIsAdded(false);
-                return handleAddItem(itemCard);
+                return handleRemoveItem(itemCard.card.info.id);
               }}>
               Remove
             </button>
