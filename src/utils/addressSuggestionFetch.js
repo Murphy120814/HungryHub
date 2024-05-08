@@ -1,7 +1,7 @@
 //this will fetch the suggestions
 
 const ADDRESS_SUGGESTIONS_URL = (inputSearchText) =>
-  `https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${inputSearchText}&types=`;
+  `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/misc/place-autocomplete?input=${inputSearchText}&types=`;
 
 export default async function addressSuggestionFetch(inputSearch) {
   try {

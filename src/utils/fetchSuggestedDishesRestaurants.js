@@ -4,7 +4,7 @@ const SUGGESTED_DISHES_RESTAURANT_FETCH_URL = (
   lat = "18.9894007",
   lng = "73.1175162"
 ) =>
-  `https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${nameOfDish}&trackingId=undefined&submitAction=SUGGESTION&metaData=${metaData}`;
+  `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${nameOfDish}&trackingId=undefined&submitAction=SUGGESTION&metaData=${metaData}`;
 async function fetchSuggestedDishesAndRestaurantsData(
   nameOfDish,
   lat,
