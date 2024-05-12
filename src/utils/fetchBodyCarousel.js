@@ -1,5 +1,5 @@
 export const FETCH_URL = (lat = "18.9894007", lng = "73.1175162") =>
-  `http://hhapi.frontendmeta.dev/api/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+  `https://hhapi.frontendmeta.dev/api/swiggy/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
 
 async function fetchBodyCarousel(lat, lng) {
   const data = await fetch(FETCH_URL(lat, lng));

@@ -1,6 +1,6 @@
 //this will fetch the latitude and longitude of the location
 const ADDRESS_URL = (placeId) =>
-  `http://hhapi.frontendmeta.dev/api/swiggy/dapi/misc/address-recommend?place_id=${placeId}`;
+  `https://hhapi.frontendmeta.dev/api/swiggy/dapi/misc/address-recommend?place_id=${placeId}`;
 
 const fetchingCoordinates = async (placeId) => {
   try {
