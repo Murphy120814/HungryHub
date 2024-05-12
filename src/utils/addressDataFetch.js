@@ -1,6 +1,6 @@
 //this will fetch the latitude and longitude of the location
 const ADDRESS_URL = (placeId) =>
-  `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/misc/address-recommend?place_id=${placeId}`;
+  `http://HHServerProxy.us-east-1.elasticbeanstalk.com/api/swiggy/dapi/misc/address-recommend?place_id=${placeId}`;
 
 const fetchingCoordinates = async (placeId) => {
   try {

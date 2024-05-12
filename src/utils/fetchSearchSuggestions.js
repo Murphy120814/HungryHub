@@ -3,7 +3,7 @@ const SEARCH_SUGGESTION_URL = (
   lat = "18.9894007",
   lng = "73.1175162"
 ) =>
-  `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/search/suggest?lat=${lat}&lng=${lng}&str=${searchText}&trackingId=null`;
+  `http://HHServerProxy.us-east-1.elasticbeanstalk.com/api/swiggy/dapi/restaurants/search/suggest?lat=${lat}&lng=${lng}&str=${searchText}&trackingId=null`;
 
 async function fetchSearchSuggestions(searchText, lat, lng) {
   const data = await fetch(SEARCH_SUGGESTION_URL(searchText, lat, lng));
