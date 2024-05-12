@@ -1,7 +1,7 @@
 //this will fetch the suggestions
 
 const ADDRESS_SUGGESTIONS_URL = (inputSearchText) =>
-  `http://HHServerProxy.us-east-1.elasticbeanstalk.com/api/swiggy/dapi/misc/place-autocomplete?input=${inputSearchText}&types=`;
+  `https://HHServerProxy.us-east-1.elasticbeanstalk.com/api/swiggy/dapi/misc/place-autocomplete?input=${inputSearchText}&types=`;
 
 export default async function addressSuggestionFetch(inputSearch) {
   try {
