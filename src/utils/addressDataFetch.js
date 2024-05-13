@@ -1,6 +1,6 @@
 //this will fetch the latitude and longitude of the location
 const ADDRESS_URL = (placeId) =>
-  `https://hhapi.frontendmeta.dev/api/swiggy/dapi/misc/address-recommend?place_id=${placeId}`;
+  `https://hhserverproxy.us-east-1.elasticbeanstalk.com/api/swiggy/dapi/misc/address-recommend?place_id=${placeId}`;
 
 const fetchingCoordinates = async (placeId) => {
   try {
