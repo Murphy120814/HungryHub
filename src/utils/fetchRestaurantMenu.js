@@ -1,5 +1,5 @@
 const MENU_URL = (id, lat = "18.9894007", lng = "73.1175162") =>
-  `https://hhserverproxy.us-east-1.elasticbeanstalk.com/api/swiggy/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`;
+  `https://hungryhubapi.frontendmeta.dev/api/swiggy/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`;
 
 export default async function dataFetchResMenu(id, lat, lng) {
   try {
